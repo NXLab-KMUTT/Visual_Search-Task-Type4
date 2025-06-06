@@ -158,7 +158,6 @@ var feedback_4Clock;
 var fb_4;
 var trial_counter_4;
 var n_round_4;
-var FB_4;
 var endClock;
 var text_end;
 var globalClock;
@@ -173,7 +172,7 @@ async function experimentInit() {
   text_instructions_t = new visual.TextStim({
     win: psychoJS.window,
     name: 'text_instructions_t',
-    text: 'คุณจะเห็นรูปทรงหลายรูปปรากฏบนหน้าจอในแต่ละรอบ\nคุณต้องหา "สามเหลี่ยม" เมื่อเจอให้กดปุ่มสึเขียว\nถ้าไม่มี "สามเหลี่ยม" ให้กดปุ่มสีแดง\nแตะเพื่อดำเนินการต่อ',
+    text: 'คุณจะเห็นรูปทรงหลายรูปปรากฏบนหน้าจอในแต่ละรอบ\nคุณต้องหา "รูปสามเหลี่ยมสีฟ้า"\nถ้าหาเจอให้กดปุ่ม สีเขียว \nถ้าหาไม่เจอให้กดปุ่ม สีแดง\nแตะเพื่อดำเนินการต่อ',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
@@ -501,18 +500,6 @@ async function experimentInit() {
   // Run 'Begin Experiment' code from track_rt_4
   rts = [];
   n_round_4 = 0;
-  
-  FB_4 = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'FB_4',
-    text: '',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0.06], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
-    languageStyle: 'LTR',
-    color: new util.Color([(- 1.0), (- 1.0), (- 1.0)]),  opacity: undefined,
-    depth: -3.0 
-  });
   
   // Initialize components for Routine "end"
   endClock = new util.Clock();
@@ -1921,14 +1908,12 @@ function feedback_4RoutineBegin(snapshot) {
             feedback_text = "ผิด!";
         }
     }
-    FB_4.setText(feedback_text);
     psychoJS.experiment.addData('feedback_4.started', globalClock.getTime());
     feedback_4MaxDuration = null
     // keep track of which components have finished
     feedback_4Components = [];
     feedback_4Components.push(fb_4);
     feedback_4Components.push(trial_counter_4);
-    feedback_4Components.push(FB_4);
     
     feedback_4Components.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -1974,21 +1959,6 @@ function feedback_4RoutineEachFrame() {
     frameRemains = 0.0 + 1 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
     if (trial_counter_4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       trial_counter_4.setAutoDraw(false);
-    }
-    
-    
-    // *FB_4* updates
-    if (t >= 0.0 && FB_4.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      FB_4.tStart = t;  // (not accounting for frame time here)
-      FB_4.frameNStart = frameN;  // exact frame index
-      
-      FB_4.setAutoDraw(true);
-    }
-    
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;// most of one frame period left
-    if (FB_4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      FB_4.setAutoDraw(false);
     }
     
     // check for quit (typically the Esc key)
